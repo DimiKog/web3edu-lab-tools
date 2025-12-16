@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Address Anatomy — Web3Edu Lab Tool</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <main class="container">
+    <h1>Address Anatomy</h1>
+    <p class="subtitle">
+      Visualizing what an Ethereum address represents
+    </p>
+
+    <section class="input-section">
+      <label for="addressInput">Ethereum Address</label>
+      <input
+        id="addressInput"
+        type="text"
+        placeholder="0x..."
+        autocomplete="off"
+      />
+      <button id="analyzeBtn">Analyze</button>
+    </section>
+
+    <section id="analysis" class="analysis hidden">
+      <h2>Address Breakdown</h2>
+
+      <div class="block">
+        <strong>Prefix:</strong> <span id="prefix"></span>
+      </div>
+
+      <div class="block">
+        <strong>Hexadecimal body:</strong>
+        <div id="hexBody" class="mono"></div>
+      </div>
+
+      <div class="block">
+        <strong>Length:</strong> <span id="length"></span> characters
+      </div>
+
+      <div class="block">
+        <strong>Checksum casing:</strong>
+        <span id="checksum"></span>
+      </div>
+
+      <div class="note">
+        🔍 This address is derived from a public key.  
+        The process is one-way and cannot be reversed.
+      </div>
+    </section>
+  </main>
+
+  <script src="main.js"></script>
+</body>
+</html>
