@@ -62,3 +62,30 @@ button {
   font-size: 0.9rem;
   color: #444;
 }
+
+.hover {
+  position: relative;
+  cursor: help;
+  border-bottom: 1px dotted #888;
+}
+
+.hover::after {
+  content: attr(data-tip);
+  position: absolute;
+  left: 0;
+  bottom: 125%;
+  background: #333;
+  color: #fff;
+  padding: 0.5rem;
+  font-size: 0.75rem;
+  border-radius: 4px;
+  width: 260px;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.2s ease;
+  z-index: 10;
+}
+
+.hover:hover::after {
+  opacity: 1;
+}

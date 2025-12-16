@@ -1,10 +1,13 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8" />
   <title>Address Anatomy — Web3Edu Lab Tool</title>
   <link rel="stylesheet" href="style.css" />
+  <script src="https://cdn.jsdelivr.net/npm/ethers@5.7.2/dist/ethers.umd.min.js"></script>
 </head>
+
 <body>
 
   <main class="container">
@@ -15,12 +18,8 @@
 
     <section class="input-section">
       <label for="addressInput">Ethereum Address</label>
-      <input
-        id="addressInput"
-        type="text"
-        placeholder="0x..."
-        autocomplete="off"
-      />
+      <input id="addressInput" type="text" placeholder="0x..." autocomplete="off" />
+      <button id="walletBtn">Use Wallet</button>
       <button id="analyzeBtn">Analyze</button>
     </section>
 
@@ -28,12 +27,16 @@
       <h2>Address Breakdown</h2>
 
       <div class="block">
-        <strong>Prefix:</strong> <span id="prefix"></span>
+        <strong>Prefix:</strong>
+        <span id="prefix" class="hover"
+          data-tip="All Ethereum addresses start with 0x to indicate hexadecimal encoding."></span>
       </div>
 
       <div class="block">
         <strong>Hexadecimal body:</strong>
-        <div id="hexBody" class="mono"></div>
+        <div id="hexBody" class="mono hover"
+          data-tip="This is a 20-byte (40 hex characters) identifier derived from the public key. It cannot be reversed.">
+        </div>
       </div>
 
       <div class="block">
@@ -45,8 +48,23 @@
         <span id="checksum"></span>
       </div>
 
+      <div class="block">
+        <strong>Address representations:</strong>
+        <div class="actions">
+          <button id="toLower">lowercase</button>
+          <button id="toUpper">UPPERCASE</button>
+          <button id="toChecksum">Checksummed (EIP-55)</button>
+        </div>
+      </div>
+
+      <div class="note" id="representationNote">
+        ℹ️ These are different <em>textual representations</em> of the <strong>same</strong> Ethereum address.
+        The blockchain treats them as identical. Checksum casing exists to help software detect
+        accidental typing errors made by humans.
+      </div>
+
       <div class="note">
-        🔍 This address is derived from a public key.  
+        🔍 This address is derived from a public key.
         The process is one-way and cannot be reversed.
       </div>
     </section>
@@ -54,4 +72,5 @@
 
   <script src="main.js"></script>
 </body>
+
 </html>
