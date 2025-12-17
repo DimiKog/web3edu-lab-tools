@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <title>Network Identifier — Web3Edu Lab Tool</title>
+    <link rel="stylesheet" href="../../shared/web3edu-theme.css" />
+    <script src="https://cdn.jsdelivr.net/npm/ethers@5.7.2/dist/ethers.umd.min.js"></script>
+    <link rel="icon" href="data:," />
+</head>
+
+<body>
+
+    <main class="w3e-container">
+        <header class="w3e-hero">
+            <h1 class="w3e-title">Network Identifier</h1>
+            <p class="w3e-subtitle">
+                Understand which blockchain network your wallet is currently operating on
+            </p>
+        </header>
+
+        <section class="w3e-section">
+            <p class="w3e-hint">
+                This lab is observational only. It does not switch networks, modify wallet settings, or send
+                transactions.
+            </p>
+
+            <div class="w3e-controls">
+                <button id="connectBtn">Connect Wallet</button>
+                <button id="refreshBtn" class="secondary" disabled>
+                    Refresh Network Info
+                </button>
+            </div>
+        </section>
+
+        <section id="networkInfo" class="w3e-section w3e-card w3e-card--explain hidden" style="margin-top: 2.5rem;">
+            <h2>Current Network</h2>
+
+            <p class="w3e-hint">
+                Wallets identify blockchain networks using a numeric identifier called a <strong>chainId</strong>.
+            </p>
+
+            <div class="w3e-card w3e-card--besu" style="margin-top:1.5rem;">
+                <h3>Network Detected by Your Wallet</h3>
+
+                <p>
+                    <strong>Network name:</strong>
+                    <span id="networkName">—</span>
+                </p>
+
+                <p>
+                    <strong>Chain ID (decimal):</strong>
+                    <span id="chainIdDec">—</span>
+                </p>
+
+                <p>
+                    <strong>Chain ID (hex):</strong>
+                    <span id="chainIdHex">—</span>
+                </p>
+
+                <p>
+                    <strong>Native currency:</strong>
+                    <span id="nativeCurrency">—</span>
+                </p>
+            </div>
+
+            <div class="note" style="margin-top:1.5rem;">
+                ℹ️ The same wallet address can exist on multiple blockchain networks.
+                The active network determines where your balance lives and where your actions are recorded.
+            </div>
+        </section>
+    </main>
+
+    <script src="main.js"></script>
+</body>
+
+</html>

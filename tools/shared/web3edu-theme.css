@@ -1,0 +1,380 @@
+/* =====================================================
+   Web3Edu Tool Design System (v1)
+   Shared styling for all Web3Edu lab tools
+   ===================================================== */
+
+/* ---------- Color system ---------- */
+:root {
+  /* Brand */
+  --w3e-primary: #2563eb;   /* Web3Edu blue */
+  --w3e-accent:  #f59e0b;   /* emphasis / contrast */
+
+  /* Neutrals */
+  --w3e-bg:      #f1ecfb;        /* Web3Edu lavender canvas */
+  --w3e-surface: #ffffff;        /* clean white cards on lavender */
+  --w3e-border:  #e5e7eb;
+  --w3e-text:    #1f2937;
+  --w3e-muted:   #6b7280;
+
+  /* Semantic */
+  --w3e-info:    #3b82f6;
+  --w3e-success: #10b981;
+  --w3e-warning: #f59e0b;
+  --w3e-danger:  #ef4444;
+}
+
+/* ---------- Typography ---------- */
+body {
+  font-family: system-ui, -apple-system, BlinkMacSystemFont,
+               "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  background: var(--w3e-bg);
+  color: var(--w3e-text);
+  margin: 0;
+  padding: 0;
+}
+
+.mono {
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+}
+
+h1, h2, h3 {
+  font-weight: 600;
+}
+
+/* ---------- Layout primitives ---------- */
+.w3e-container {
+  max-width: 960px;
+  margin: 3rem auto;
+  padding: 2.5rem;
+  background: var(--w3e-surface);
+  border-radius: 14px;
+  box-shadow: 0 10px 28px rgba(60, 30, 120, 0.08);
+}
+
+.w3e-section {
+  margin-bottom: 2.5rem;
+}
+
+.w3e-subtitle {
+  color: #4b5563;
+  margin-bottom: 2rem;
+}
+
+/* ---------- Hero / Header ---------- */
+.w3e-hero {
+  text-align: center;
+  margin-bottom: 3rem;
+}
+
+.w3e-hero .w3e-subtitle {
+  max-width: 640px;
+  margin: 0 auto;
+  color: var(--w3e-muted);
+}
+
+/* ---------- Card system ---------- */
+.w3e-card {
+  background: linear-gradient(
+    180deg,
+    var(--w3e-surface) 0%,
+    #f6f7fb 100%
+  );
+  border: 1px solid var(--w3e-border);
+  border-radius: 12px;
+  padding: 1.75rem;
+}
+
+/* ---------- Explanation card ---------- */
+.w3e-card--explain {
+  background: linear-gradient(
+    180deg,
+    #f9fafb 0%,
+    var(--w3e-surface) 100%
+  );
+  border-left: 4px solid var(--w3e-info);
+}
+
+.w3e-card--besu {
+  border-left: 6px solid var(--w3e-primary);
+  background: linear-gradient(
+    90deg,
+    rgba(37, 99, 235, 0.06) 0%,
+    var(--w3e-surface) 40%
+  );
+}
+
+.w3e-card--public {
+  border-left: 6px solid var(--w3e-accent);
+  background: linear-gradient(
+    90deg,
+    rgba(245, 158, 11, 0.07) 0%,
+    var(--w3e-surface) 40%
+  );
+}
+
+/* ---------- Buttons ---------- */
+.w3e-button {
+  background: var(--w3e-primary);
+  color: white;
+  border: none;
+  padding: 0.5rem 0.9rem;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 0.9rem;
+}
+
+.w3e-button.secondary {
+  background: transparent;
+  color: var(--w3e-muted);
+  border: 1px solid var(--w3e-border);
+}
+
+.w3e-button.secondary:hover {
+  background: #f3f4f6;
+}
+
+/* ---------- Control group ---------- */
+.w3e-controls {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  align-items: center;
+  background: #f8fafc;
+  padding: 1rem;
+  border-radius: 10px;
+  border: 1px solid var(--w3e-border);
+  margin: 1.5rem 0;
+}
+
+.w3e-controls input {
+  padding: 0.45rem 0.6rem;
+  border-radius: 6px;
+  border: 1px solid var(--w3e-border);
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+  font-size: 0.85rem;
+}
+
+/* ---------- Tooltips ---------- */
+.w3e-tooltip {
+  cursor: help;
+  color: var(--w3e-muted);
+  margin-left: 0.25rem;
+  position: relative;
+  font-weight: 600;
+}
+
+.w3e-tooltip:hover::after {
+  content: attr(data-tooltip);
+  position: absolute;
+  bottom: 130%;
+  left: 0;
+  background: #111;
+  color: #fff;
+  padding: 0.5rem 0.7rem;
+  border-radius: 6px;
+  font-size: 0.8rem;
+  white-space: nowrap;
+  z-index: 100;
+}
+
+/* ---------- Utility ---------- */
+.w3e-hint {
+  font-size: 0.85rem;
+  color: var(--w3e-muted);
+}
+
+.w3e-takeaway {
+  background: linear-gradient(
+    180deg,
+    #eef4ff 0%,
+    #f8fbff 100%
+  );
+  padding: 1.75rem;
+  border-radius: 10px;
+}
+
+/* ---------- Breakdown formatting ---------- */
+.w3e-breakdown p {
+  margin: 0.4rem 0;
+}
+
+.w3e-breakdown strong {
+  color: var(--w3e-text);
+}
+
+/* ---------- Tool title ---------- */
+.w3e-title {
+  display: block;
+  width: 100%;
+  text-align: center !important;
+  font-size: 2.8rem;
+  font-weight: 700;
+  color: var(--w3e-text);
+  margin: 0 auto 0.75rem auto;
+  position: relative;
+}
+
+.w3e-title::after {
+  content: "";
+  display: block;
+  width: 84px;
+  height: 4px;
+  background: var(--w3e-primary);
+  margin: 0.9rem auto 0 auto;
+  border-radius: 3px;
+  opacity: 0.9;
+}
+
+.w3e-title + .w3e-subtitle {
+  text-align: center;
+}
+
+/* Defensive centering to avoid layout inheritance issues */
+.w3e-container > h1 {
+  text-align: center !important;
+}
+
+/* ---------- Collapsible instructional hint ---------- */
+.w3e-card.collapsible {
+  position: relative;
+}
+
+.w3e-card.collapsible::after {
+  content: "Click to expand";
+  position: absolute;
+  bottom: 1rem;
+  right: 1.2rem;
+  font-size: 0.75rem;
+  color: var(--w3e-muted);
+  opacity: 0.85;
+  pointer-events: none;
+}
+
+/* Greek localization for collapsible hint */
+html[lang="el"] .w3e-card.collapsible::after {
+  content: "Κάντε κλικ για ανάπτυξη";
+}
+
+/* ---------- Address visual anatomy (Address Anatomy tool) ---------- */
+.w3e-address-visual {
+  display: flex;
+  align-items: flex-start;
+  gap: 1rem;
+  padding: 1rem 1.2rem;
+  background: #f8fafc;
+  border-radius: 10px;
+  border: 1px solid var(--w3e-border);
+  margin: 1rem 0 1.5rem 0;
+  overflow-x: auto;
+}
+
+/* Individual address segment (prefix or body) */
+.addr-segment {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 0.35rem;
+}
+
+/* Value shown to the student */
+.addr-value {
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+  font-size: 0.95rem;
+  font-weight: 600;
+  padding: 0.4rem 0.65rem;
+  border-radius: 8px;
+  white-space: nowrap;
+}
+
+/* Prefix styling */
+.addr-segment.prefix .addr-value {
+  background: #e0e7ff;
+  color: #1e3a8a;
+}
+
+/* Address body styling */
+.addr-segment.body .addr-value {
+  background: #f1f5f9;
+  color: #1f2937;
+  letter-spacing: 0.06em;
+}
+
+/* Small label under each segment */
+.addr-label {
+  font-size: 0.65rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--w3e-muted);
+}
+
+/* Explanation text inside the segment */
+.addr-desc {
+  font-size: 0.75rem;
+  color: var(--w3e-muted);
+  max-width: 220px;
+  line-height: 1.35;
+}
+
+/* Length badge (only once, on body segment) */
+.addr-length {
+  margin-top: 0.25rem;
+  align-self: flex-start;
+  background: #ecfeff;
+  color: #155e75;
+  padding: 0.2rem 0.5rem;
+  border-radius: 6px;
+  font-size: 0.65rem;
+  font-weight: 600;
+  white-space: nowrap;
+}
+
+/* ---------- Representation buttons ---------- */
+.w3e-repr-actions {
+  display: flex;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+}
+
+.w3e-repr-actions button {
+  background: #f8fafc;
+  border: 1px solid var(--w3e-border);
+  color: var(--w3e-text);
+  padding: 0.35rem 0.7rem;
+  border-radius: 6px;
+  font-size: 0.8rem;
+  cursor: pointer;
+  transition:
+    background-color 0.15s ease,
+    border-color 0.15s ease,
+    color 0.15s ease,
+    box-shadow 0.15s ease,
+    transform 0.05s ease;
+}
+
+.w3e-repr-actions button:hover:not(:disabled) {
+  background: #eef2ff;
+  border-color: var(--w3e-primary);
+  box-shadow: 0 2px 6px rgba(37, 99, 235, 0.15);
+  transform: translateY(-1px);
+}
+
+.w3e-repr-actions button.active {
+  background: var(--w3e-primary);
+  color: white;
+  border-color: var(--w3e-primary);
+  font-weight: 600;
+  box-shadow: 0 0 0 2px rgba(37, 99, 235, 0.25);
+}
+
+.w3e-repr-actions button:disabled {
+  opacity: 0.45;
+  cursor: not-allowed;
+  box-shadow: none;
+  transform: none;
+}
+
+.w3e-repr-actions button:focus-visible {
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.35);
+}

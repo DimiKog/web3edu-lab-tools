@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <title>Identity Scope Visualizer — Web3Edu Lab Tool</title>
+    <link rel="stylesheet" href="../../shared/web3edu-theme.css" />
+    <link rel="icon" href="data:," />
+</head>
+
+<body>
+
+    <main class="w3e-container">
+        <h1 class="w3e-title">Identity Scope Visualizer</h1>
+        <p class="w3e-subtitle">
+            How the same wallet identity gains different meaning across blockchain networks
+        </p>
+
+        <!-- Identity Input -->
+        <section class="w3e-section">
+            <h2>Cryptographic Identity</h2>
+            <p>
+                A single wallet (private key) generates a single blockchain address.
+                That address can appear <strong>identical across different networks</strong>.
+                <span class="w3e-tooltip"
+                    data-tooltip="The address string is derived only from the private key, not from the network.">ⓘ</span>
+            </p>
+
+            <label for="addressInput">Wallet Address (optional)</label>
+            <input id="addressInput" type="text" placeholder="0x..." autocomplete="off" />
+
+            <p class="w3e-hint">
+                This is a conceptual visualization. No live network connection is required.
+            </p>
+        </section>
+
+        <!-- Network Contexts -->
+        <section class="w3e-section">
+            <h2>Network Contexts (Identity Scope)</h2>
+
+            <div class="cards">
+
+                <!-- Besu Card -->
+                <div class="w3e-card w3e-card--besu collapsible">
+                    <h3>Besu Edu-Net</h3>
+                    <div class="card-details">
+                        <p class="address" data-bind="address">
+                            Address: <span class="mono">same value</span>
+                        </p>
+
+                        <ul>
+                            <li>Permissioned network</li>
+                            <li>Role-based access control</li>
+                            <li>Locally defined governance rules</li>
+                            <li>Academic / institutional trust model</li>
+                        </ul>
+
+                        <p class="message">
+                            Identity meaning and permissions are defined by the network rules.
+                            <span class="w3e-tooltip"
+                                data-tooltip="Networks define what an identity is allowed to do, not who the identity is.">ⓘ</span>
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Public Ethereum Card -->
+                <div class="w3e-card w3e-card--public collapsible">
+                    <h3>Public Ethereum</h3>
+                    <div class="card-details">
+                        <p class="address" data-bind="address">
+                            Address: <span class="mono">same value</span>
+                        </p>
+
+                        <ul>
+                            <li>Permissionless network</li>
+                            <li>No built-in identity roles or allowlists</li>
+                            <li>Protocol-level governance</li>
+                            <li>Economic trust model</li>
+                        </ul>
+
+                        <p class="message">
+                            Identity has no predefined permissions by default.
+                        </p>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- Key Takeaway -->
+        <section class="w3e-section w3e-takeaway">
+            <h2>Key Takeaway</h2>
+            <p>
+                The wallet and address remain the same.
+                What changes is the <strong>meaning, permissions, and trust</strong> associated with that identity —
+                and these are defined by the network you join.
+            </p>
+        </section>
+    </main>
+
+    <script src="main.js"></script>
+</body>
+
+</html>

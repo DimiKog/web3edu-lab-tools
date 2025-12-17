@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="el">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <title>Ανατομία Διεύθυνσης — Web3Edu Lab Tool</title>
+    <link rel="stylesheet" href="../../shared/web3edu-theme.css" />
+    <script src="https://cdn.jsdelivr.net/npm/ethers@5.7.2/dist/ethers.umd.min.js"></script>
+    <link rel="icon" href="data:," />
+</head>
+
+<body>
+
+    <main class="w3e-container">
+        <header class="w3e-hero">
+            <h1 class="w3e-title">Ανατομία Διεύθυνσης</h1>
+            <p class="w3e-subtitle">
+                Οπτική εξερεύνηση του τι αντιπροσωπεύει μια διεύθυνση Ethereum
+                σε επίπεδο δομής και αναπαράστασης
+            </p>
+        </header>
+
+        <section class="w3e-section">
+            <label for="addressInput">Διεύθυνση Ethereum</label>
+
+            <div class="w3e-controls">
+                <input id="addressInput" type="text" placeholder="0x..." autocomplete="off" class="w3e-address-input" />
+                <button id="walletBtn">Χρήση Πορτοφολιού</button>
+                <button id="analyzeBtn">Ανάλυση</button>
+            </div>
+
+            <p class="w3e-hint">
+                Το εργαλείο είναι εννοιολογικό και δεν πραγματοποιεί σύνδεση
+                με πραγματικό blockchain.
+            </p>
+        </section>
+
+        <section id="analysis" class="w3e-section w3e-card w3e-card--explain hidden" style="margin-top: 2.5rem;">
+            <h2>Δομή Διεύθυνσης</h2>
+
+            <p class="w3e-hint">
+                Μια διεύθυνση Ethereum είναι ένα ενιαίο αλφαριθμητικό
+                με αυστηρά καθορισμένη εσωτερική δομή.
+            </p>
+
+            <div>
+                <div class="w3e-address-visual" aria-label="Δομή διεύθυνσης Ethereum">
+                    <div class="addr-segment prefix">
+                        <div class="addr-value mono">0x</div>
+                        <div class="addr-label">ΠΡΟΘΕΜΑ</div>
+                        <div class="addr-desc">
+                            Δηλώνει ότι πρόκειται για διεύθυνση τύπου Ethereum
+                            σε δεκαεξαδική μορφή
+                        </div>
+                    </div>
+
+                    <div class="addr-segment body">
+                        <div class="addr-value mono" id="hexBody"></div>
+                        <div class="addr-label">
+                            ΚΥΡΙΩΣ ΜΕΡΟΣ
+                            <span class="addr-length" id="addrLength">
+                                40 χαρακτήρες
+                            </span>
+                        </div>
+                        <div class="addr-desc">
+                            40 δεκαεξαδικοί χαρακτήρες που προκύπτουν
+                            μέσω κρυπτογραφικής διαδικασίας από το δημόσιο κλειδί
+                        </div>
+                    </div>
+                </div>
+
+                <div class="block w3e-card w3e-card--explain" style="margin-top:1.5rem;">
+                    <h3 style="margin-top:0;">Αναπαραστάσεις Διεύθυνσης</h3>
+
+                    <p class="w3e-hint" style="margin-bottom:0.75rem;">
+                        Η ίδια διεύθυνση Ethereum μπορεί να αναπαρασταθεί
+                        με διαφορετικές μορφές κειμένου.
+                    </p>
+
+                    <div class="w3e-repr-actions" style="margin-bottom:1rem;">
+                        <button id="toLower" class="w3e-button secondary">
+                            πεζά
+                        </button>
+
+                        <button id="toUpper" class="w3e-button secondary">
+                            ΚΕΦΑΛΑΙΑ
+                        </button>
+
+                        <button id="toChecksum" class="w3e-button secondary">
+                            Checksum (EIP‑55)
+                        </button>
+                    </div>
+
+                    <p class="w3e-hint">
+                        <strong>Checksum χαρακτήρων:</strong>
+                        Οι μικτές (πεζά/κεφαλαία) διευθύνσεις περιλαμβάνουν checksum,
+                        το οποίο βοηθά το λογισμικό να εντοπίζει τυχαία λάθη
+                        κατά την πληκτρολόγηση.
+                    </p>
+
+                    <div class="note" id="representationNote">
+                        ℹ️ Πρόκειται για διαφορετικές <em>κειμενικές</em> αναπαραστάσεις
+                        της <strong>ίδιας</strong> διεύθυνσης Ethereum.
+                        Το blockchain τις αντιμετωπίζει ως απολύτως ισοδύναμες.
+                    </div>
+
+                    <div class="note">
+                        🔍 Η διεύθυνση προκύπτει από δημόσιο κλειδί.
+                        Η διαδικασία παραγωγής είναι μονόδρομη
+                        και δεν μπορεί να αντιστραφεί.
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <script src="main.js"></script>
+</body>
+
+</html>

@@ -4,68 +4,98 @@
 <head>
   <meta charset="UTF-8" />
   <title>Address Anatomy — Web3Edu Lab Tool</title>
-  <link rel="stylesheet" href="style.css" />
+  <link rel="stylesheet" href="../../shared/web3edu-theme.css" />
   <script src="https://cdn.jsdelivr.net/npm/ethers@5.7.2/dist/ethers.umd.min.js"></script>
+  <link rel="icon" href="data:," />
 </head>
 
 <body>
 
-  <main class="container">
-    <h1>Address Anatomy</h1>
-    <p class="subtitle">
-      Visualizing what an Ethereum address represents
-    </p>
+  <main class="w3e-container">
+    <header class="w3e-hero">
+      <h1 class="w3e-title">Address Anatomy</h1>
+      <p class="w3e-subtitle">
+        Visual exploration of what an Ethereum address represents
+      </p>
+    </header>
 
-    <section class="input-section">
+    <section class="w3e-section">
       <label for="addressInput">Ethereum Address</label>
-      <input id="addressInput" type="text" placeholder="0x..." autocomplete="off" />
-      <button id="walletBtn">Use Wallet</button>
-      <button id="analyzeBtn">Analyze</button>
+
+      <div class="w3e-controls">
+        <input id="addressInput" type="text" placeholder="0x..." autocomplete="off" class="w3e-address-input" />
+        <button id="walletBtn">Use Wallet</button>
+        <button id="analyzeBtn">Analyze</button>
+      </div>
+
+      <p class="w3e-hint">
+        This tool is conceptual. It does not connect to a live blockchain.
+      </p>
     </section>
 
-    <section id="analysis" class="analysis hidden">
-      <h2>Address Breakdown</h2>
+    <section id="analysis" class="w3e-section w3e-card w3e-card--explain hidden" style="margin-top: 2.5rem;">
+      <h2>Address Structure</h2>
+      <p class="w3e-hint">
+        An Ethereum address is a single string with a fixed internal structure.
+      </p>
+      <div>
+        <div class="w3e-address-visual" aria-label="Ethereum address structure">
+          <div class="addr-segment prefix">
+            <div class="addr-value mono">0x</div>
+            <div class="addr-label">PREFIX</div>
+            <div class="addr-desc">
+              Identifies an Ethereum-style hexadecimal address
+            </div>
+          </div>
 
-      <div class="block">
-        <strong>Prefix:</strong>
-        <span id="prefix" class="hover"
-          data-tip="All Ethereum addresses start with 0x to indicate hexadecimal encoding."></span>
-      </div>
-
-      <div class="block">
-        <strong>Hexadecimal body:</strong>
-        <div id="hexBody" class="mono hover"
-          data-tip="This is a 20-byte (40 hex characters) identifier derived from the public key. It cannot be reversed.">
+          <div class="addr-segment body">
+            <div class="addr-value mono" id="hexBody"></div>
+            <div class="addr-label">
+              ADDRESS BODY
+              <span class="addr-length" id="addrLength">40 chars</span>
+            </div>
+            <div class="addr-desc">
+              40 hexadecimal characters derived from the public key
+            </div>
+          </div>
         </div>
-      </div>
 
-      <div class="block">
-        <strong>Length:</strong> <span id="length"></span> characters
-      </div>
+        <div class="block w3e-card w3e-card--explain" style="margin-top:1.5rem;">
+          <h3 style="margin-top:0;">Address Representations</h3>
 
-      <div class="block">
-        <strong>Checksum casing:</strong>
-        <span id="checksum"></span>
-      </div>
+          <p class="w3e-hint" style="margin-bottom:0.75rem;">
+            The same Ethereum address can be written in different textual forms.
+          </p>
 
-      <div class="block">
-        <strong>Address representations:</strong>
-        <div class="actions">
-          <button id="toLower">lowercase</button>
-          <button id="toUpper">UPPERCASE</button>
-          <button id="toChecksum">Checksummed (EIP-55)</button>
+          <div class="w3e-repr-actions" style="margin-bottom:1rem;">
+            <button id="toLower" class="w3e-button secondary">
+              lowercase
+            </button>
+
+            <button id="toUpper" class="w3e-button secondary">
+              UPPERCASE
+            </button>
+
+            <button id="toChecksum" class="w3e-button secondary">
+              Checksummed (EIP‑55)
+            </button>
+          </div>
+
+          <p class="w3e-hint">
+            <strong>Checksum casing:</strong>
+            Mixed‑case addresses include a checksum that helps software detect accidental typing errors.
+          </p>
+
+          <div class="note" id="representationNote">
+            ℹ️ These are different <em>textual representations</em> of the
+            <strong>same</strong> Ethereum address. The blockchain treats them as identical.
+          </div>
+
+          <div class="note">
+            🔍 This address is derived from a public key.
+            The derivation process is one‑way and cannot be reversed.
+          </div>
         </div>
-      </div>
-
-      <div class="note" id="representationNote">
-        ℹ️ These are different <em>textual representations</em> of the <strong>same</strong> Ethereum address.
-        The blockchain treats them as identical. Checksum casing exists to help software detect
-        accidental typing errors made by humans.
-      </div>
-
-      <div class="note">
-        🔍 This address is derived from a public key.
-        The process is one-way and cannot be reversed.
       </div>
     </section>
   </main>

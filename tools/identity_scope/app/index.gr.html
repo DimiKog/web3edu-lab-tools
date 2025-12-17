@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="el">
+
+<head>
+    <meta charset="UTF-8" />
+    <title>Οπτικοποίηση Εύρους Ταυτότητας — Web3Edu Lab Tool</title>
+
+    <!-- Shared Web3Edu design system -->
+    <link rel="stylesheet" href="../../shared/web3edu-theme.css" />
+    <link rel="icon" href="data:," />
+</head>
+
+<body>
+    <main class="w3e-container">
+
+        <!-- Title -->
+        <h1 class="w3e-title">Οπτικοποίηση Εύρους Ταυτότητας</h1>
+        <p class="w3e-subtitle">
+            Πώς η ίδια ψηφιακή ταυτότητα αποκτά διαφορετικό νόημα σε διαφορετικά δίκτυα blockchain
+        </p>
+
+        <!-- Identity input -->
+        <section class="w3e-section">
+            <h2>Κρυπτογραφική Ταυτότητα</h2>
+
+            <p>
+                Ένα πορτοφόλι (ιδιωτικό κλειδί) δημιουργεί μία μοναδική διεύθυνση blockchain.
+                Η διεύθυνση αυτή μπορεί να εμφανίζεται <strong>ακριβώς ίδια σε διαφορετικά δίκτυα</strong>.
+                <span class="w3e-tooltip"
+                    data-tooltip="Η διεύθυνση παράγεται αποκλειστικά από το ιδιωτικό κλειδί και όχι από το δίκτυο.">
+                    ⓘ
+                </span>
+            </p>
+
+            <label for="addressInput">Διεύθυνση Πορτοφολιού (προαιρετικό)</label>
+            <input id="addressInput" type="text" placeholder="0x..." autocomplete="off" />
+
+            <p class="w3e-hint">
+                Το εργαλείο είναι εννοιολογικό. Δεν απαιτείται σύνδεση με πραγματικό δίκτυο.
+            </p>
+        </section>
+
+        <!-- Network cards -->
+        <section class="w3e-section">
+            <h2>Πλαίσια Δικτύων (Εύρος Ταυτότητας)</h2>
+
+            <div class="cards">
+
+                <!-- Besu -->
+                <div class="w3e-card w3e-card--besu collapsible">
+                    <h3>Besu Edu-Net</h3>
+                    <p class="card-summary">Ακαδημαϊκό δίκτυο που απαιτεί άδεια για είσοδο σε αυτό (Permissioned δίκτυο)
+                    </p>
+
+                    <div class="card-details">
+                        <p class="address" data-bind="address">
+                            Διεύθυνση: <span class="mono">ίδια τιμή</span>
+                        </p>
+
+                        <ul>
+                            <li> Χρήση άδειας για πρόσβαση στο δίκτυο (Permisssioned δίκτυο)</li>
+                            <li>Έλεγχος πρόσβασης βάσει ρόλων</li>
+                            <li>Τοπικά ορισμένη διακυβέρνηση</li>
+                            <li>Ακαδημαϊκό / θεσμικό μοντέλο εμπιστοσύνης</li>
+                        </ul>
+
+                        <p class="message">
+                            Το νόημα και τα δικαιώματα της ταυτότητας
+                            καθορίζονται από τους κανόνες του δικτύου.
+                            <span class="w3e-tooltip"
+                                data-tooltip="Τα δίκτυα καθορίζουν τι επιτρέπεται να κάνει μια ταυτότητα, όχι ποια είναι.">
+                                ⓘ
+                            </span>
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Public Ethereum -->
+                <div class="w3e-card w3e-card--public collapsible">
+                    <h3>Δημόσιο Ethereum</h3>
+                    <p class="card-summary">Ανοιχτό δίκτυο που δεν απαιτεί άδεια για συμμετοχή (permissionless)</p>
+
+                    <div class="card-details">
+                        <p class="address" data-bind="address">
+                            Διεύθυνση: <span class="mono">ίδια τιμή</span>
+                        </p>
+
+                        <ul>
+                            <li> Δίκτυο που δεν απαιτεί άδεια για συμμετοχή (permissionless)</li>
+                            <li>Χωρίς ενσωματωμένους ρόλους ταυτότητας</li>
+                            <li>Διακυβέρνηση σε επίπεδο πρωτοκόλλου</li>
+                            <li>Οικονομικό μοντέλο εμπιστοσύνης</li>
+                        </ul>
+
+                        <p class="message">
+                            Η ταυτότητα δεν διαθέτει προκαθορισμένα δικαιώματα
+                            από προεπιλογή.
+                        </p>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- Takeaway -->
+        <section class="w3e-section w3e-takeaway">
+            <h2>Βασικό Συμπέρασμα</h2>
+            <p>
+                Το πορτοφόλι και η διεύθυνση παραμένουν τα ίδια.
+                Αυτό που αλλάζει είναι το <strong>νόημα, τα δικαιώματα και η εμπιστοσύνη</strong>
+                που αποδίδονται στην ταυτότητα — και αυτά καθορίζονται από το δίκτυο.
+            </p>
+        </section>
+
+    </main>
+
+    <script src="main.js"></script>
+</body>
+
+</html>

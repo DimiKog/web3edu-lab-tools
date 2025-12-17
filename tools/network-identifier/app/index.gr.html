@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="el">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <title>Αναγνώριση Δικτύου — Web3Edu Lab Tool</title>
+    <link rel="stylesheet" href="../../shared/web3edu-theme.css" />
+    <script src="https://cdn.jsdelivr.net/npm/ethers@5.7.2/dist/ethers.umd.min.js"></script>
+    <link rel="icon" href="data:," />
+</head>
+
+<body>
+
+    <main class="w3e-container">
+        <header class="w3e-hero">
+            <h1 class="w3e-title">Αναγνώριση Δικτύου</h1>
+            <p class="w3e-subtitle">
+                Κατανόηση του blockchain δικτύου στο οποίο λειτουργεί
+                τη δεδομένη στιγμή το πορτοφόλι σας
+            </p>
+        </header>
+
+        <section class="w3e-section">
+            <p class="w3e-hint">
+                Το εργαστήριο αυτό είναι αποκλειστικά παρατηρητικό.
+                Δεν αλλάζει δίκτυα, δεν τροποποιεί ρυθμίσεις πορτοφολιού
+                και δεν αποστέλλει συναλλαγές.
+            </p>
+
+            <div class="w3e-controls">
+                <button id="connectBtn">Σύνδεση Πορτοφολιού</button>
+                <button id="refreshBtn" class="secondary" disabled>
+                    Ανανέωση Πληροφοριών Δικτύου
+                </button>
+            </div>
+        </section>
+
+        <section id="networkInfo" class="w3e-section w3e-card w3e-card--explain hidden" style="margin-top: 2.5rem;">
+            <h2>Τρέχον Δίκτυο</h2>
+
+            <p class="w3e-hint">
+                Τα πορτοφόλια αναγνωρίζουν τα blockchain δίκτυα
+                χρησιμοποιώντας έναν αριθμητικό αναγνωριστικό
+                που ονομάζεται <strong>chainId</strong>.
+            </p>
+
+            <div class="w3e-card w3e-card--besu" style="margin-top:1.5rem;">
+                <h3>Δίκτυο όπως ανιχνεύεται από το πορτοφόλι</h3>
+
+                <p>
+                    <strong>Όνομα δικτύου:</strong>
+                    <span id="networkName">—</span>
+                </p>
+
+                <p>
+                    <strong>Chain ID (δεκαδικό):</strong>
+                    <span id="chainIdDec">—</span>
+                </p>
+
+                <p>
+                    <strong>Chain ID (δεκαεξαδικό):</strong>
+                    <span id="chainIdHex">—</span>
+                </p>
+
+                <p>
+                    <strong>Εγγενές νόμισμα:</strong>
+                    <span id="nativeCurrency">—</span>
+                </p>
+            </div>
+
+            <div class="note" style="margin-top:1.5rem;">
+                ℹ️ Η ίδια διεύθυνση πορτοφολιού μπορεί να υπάρχει
+                σε πολλαπλά blockchain δίκτυα.
+                Το ενεργό δίκτυο καθορίζει πού βρίσκεται το υπόλοιπό σας
+                και σε ποιο blockchain καταγράφονται οι ενέργειές σας.
+            </div>
+        </section>
+    </main>
+
+    <script src="main.js"></script>
+</body>
+
+</html>
