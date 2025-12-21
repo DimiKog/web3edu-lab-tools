@@ -1,0 +1,43 @@
+/* =========================================
+   Message Encryptor — Local Enhancements
+   ========================================= */
+
+/* Message input should feel like "writing", not a comment box */
+#plainMessage {
+  width: 100%;
+  min-height: 140px;
+  resize: vertical;
+  font-size: 0.95rem;
+  line-height: 1.5;
+}
+
+/* Encrypted payload is large + technical by nature */
+#encryptedOutput {
+  width: 100%;
+  min-height: 220px;
+  resize: vertical;
+  font-size: 0.8rem;
+  line-height: 1.4;
+  white-space: pre-wrap;
+  word-break: break-all;
+}
+
+#result {
+  margin-top: 2.5rem;
+}
+
+/* Make controls stack nicely on smaller screens */
+.w3e-controls {
+  align-items: flex-end;
+}
+
+.w3e-controls label {
+  flex: 1;
+  min-width: 220px;
+}
+
+/* Encrypt button alignment */
+#encryptBtn {
+  align-self: flex-end;
+  margin-top: 0.5rem;
+}

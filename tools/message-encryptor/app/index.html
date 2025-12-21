@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <title>Message Encryptor | Web3Edu</title>
+    <link rel="stylesheet" href="../../shared/web3edu-theme.css" />
+    <link rel="stylesheet" href="./style.css" />
+    <link rel="icon" href="data:,">
+</head>
+
+<body>
+    <main class="w3e-container">
+        <header class="w3e-hero">
+            <h1 class="w3e-title">🔐 Message Encryptor</h1>
+            <p class="w3e-subtitle">
+                Encrypt a message so only the receiver’s wallet can read it.
+            </p>
+        </header>
+
+        <section class="w3e-card w3e-section">
+            <div class="w3e-controls">
+                <label>
+                    Receiver Address
+                    <input id="receiverAddress" type="text" placeholder="0x…" />
+                </label>
+
+                <label>
+                    Message
+                    <textarea id="plainMessage" rows="4"></textarea>
+                </label>
+
+                <button id="encryptBtn" class="w3e-button">
+                    Encrypt for Receiver
+                </button>
+            </div>
+
+            <p class="w3e-hint">
+                Uses wallet-based public-key encryption. No blockchain interaction.
+            </p>
+
+            <p class="w3e-hint">
+                ⚠️ <strong>Important limitation (by design):</strong><br />
+                MetaMask can only encrypt messages for accounts that exist inside <em>your own wallet</em>.<br />
+                To simulate a receiver, create or switch to another account in MetaMask.
+            </p>
+        </section>
+
+        <section id="result" class="card hidden">
+            <h3>Encrypted Payload</h3>
+            <textarea id="encryptedOutput" rows="6" readonly></textarea>
+
+            <!-- 👇 NEW subtle hint -->
+            <p class="w3e-hint" style="margin-top: 0.5rem;">
+                Share the full JSON payload with the receiver.
+            </p>
+
+            <button id="copyBtn">Copy</button>
+
+            <div class="info">
+                This payload can only be decrypted by the receiver’s wallet.
+                No blockchain interaction occurred.
+            </div>
+        </section>
+    </main>
+
+    <!-- NaCl cryptography (browser-safe, no bundler) -->
+    <script src="https://cdn.jsdelivr.net/npm/tweetnacl@1.0.3/nacl.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/tweetnacl-util@0.15.1/nacl-util.min.js"></script>
+    <!-- Message Encryptor logic (classic script) -->
+    <script src="./main.js"></script>
+</body>
+
+</html>
