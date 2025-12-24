@@ -16,45 +16,82 @@
         <header class="w3e-hero">
             <h1 class="w3e-title">🔓 Αποκρυπτογράφηση Μηνύματος</h1>
             <p class="w3e-subtitle">
-                Αποκρυπτογράφησε ένα μήνυμα που έχει κρυπτογραφηθεί για το πορτοφόλι σου.
+                Αποκρυπτογράφησε ένα μήνυμα χρησιμοποιώντας το ιδιωτικό κλειδί που αντιστοιχεί στο δημόσιο κλειδί του παραλήπτη.
             </p>
         </header>
 
-        <section class="w3e-card w3e-section">
-            <label>
-                Κρυπτογραφημένο Payload (JSON)
-                <textarea id="encryptedPayload" rows="8"
-                    placeholder="Επικόλλησε εδώ ολόκληρο το JSON payload"></textarea>
-            </label>
+        <section class="w3e-card w3e-card--explain w3e-section">
+            <p><strong>Εκπαιδευτικός στόχος:</strong> Το εργαλείο δείχνει ότι τα <em>ιδιωτικά κλειδιά</em> απαιτούνται
+                για την ανάγνωση κρυπτογραφημένων μηνυμάτων.</p>
 
-            <button id="decryptBtn" class="w3e-button">
-                Αποκρυπτογράφηση με το Πορτοφόλι μου
-            </button>
-
-            <p class="w3e-hint">
-                Χρήση αποκρυπτογράφησης με ιδιωτικό κλειδί πορτοφολιού. Χωρίς blockchain.
+            <p>
+                Στο Lab 02, τα μηνύματα κρυπτογραφούνται με ένα <strong>δημόσιο κλειδί</strong>.
+                Μόνο το αντίστοιχο <strong>ιδιωτικό κλειδί</strong> μπορεί να τα αποκρυπτογραφήσει.
             </p>
 
             <p class="w3e-hint">
-                ⚠️ <strong>Σημαντικό:</strong><br />
-                Πρέπει να είσαι συνδεδεμένος στο πορτοφόλι που ήταν ο αρχικός παραλήπτης.
+                🔐 Αυτό το βήμα ολοκληρώνει τον κύκλο κρυπτογράφησης → αποκρυπτογράφησης.
+                Αν το ιδιωτικό κλειδί δεν αντιστοιχεί στο δημόσιο κλειδί της κρυπτογράφησης,
+                η αποκρυπτογράφηση θα αποτύχει — όπως πρέπει.
             </p>
         </section>
 
-        <section id="result" class="card hidden">
+        <section class="w3e-card w3e-section">
+            <div class="w3e-controls w3e-controls--stack">
+                <label>
+                    Ιδιωτικό Κλειδί (Hex) — ΚΡΑΤΗΣΕ ΤΟ ΜΥΣΤΙΚΟ
+                    <textarea id="privateKeyInput" rows="2"
+                        placeholder="0x…"></textarea>
+                </label>
+                <p class="w3e-hint">
+                    ⚠️ Πρέπει να χρησιμοποιήσεις το <strong>ιδιωτικό κλειδί</strong> που αντιστοιχεί
+                    στο <em>δημόσιο κλειδί που χρησιμοποιήθηκε στην κρυπτογράφηση</em>.
+                    Όποιος έχει αυτό το ιδιωτικό κλειδί μπορεί να διαβάσει το μήνυμα.
+                </p>
+
+                <label>
+                    Κρυπτογραφημένο Payload (JSON)
+                    <textarea id="encryptedPayload" rows="8"
+                        placeholder="Επικόλλησε εδώ ολόκληρο το JSON payload"></textarea>
+                </label>
+                <p class="w3e-hint">
+                    Επικόλλησε <strong>ολόκληρο το JSON payload</strong> από το εργαλείο Message Encryptor.
+                    Όλα τα πεδία είναι απαραίτητα για την αποκρυπτογράφηση.
+                </p>
+
+                <button id="decryptBtn" class="w3e-button">
+                    Αποκρυπτογράφηση Μηνύματος
+                </button>
+            </div>
+
+            <p class="w3e-hint">
+                Χρήση μόνο τοπικής κρυπτογράφησης.
+                Χωρίς blockchain, χωρίς πορτοφόλι, χωρίς δίκτυο.
+            </p>
+        </section>
+
+        <section id="result" class="w3e-card w3e-section hidden">
             <h3>Αποκρυπτογραφημένο Μήνυμα</h3>
             <textarea id="decryptedOutput" rows="4" readonly></textarea>
 
             <button id="copyBtn">Αντιγραφή</button>
 
             <div class="info">
-                Η αποκρυπτογράφηση γίνεται τοπικά στο πορτοφόλι.
+                Η αποκρυπτογράφηση γίνεται τοπικά στον browser σου.
                 Δεν γίνεται καμία συναλλαγή στο blockchain.
             </div>
         </section>
 
     </main>
 
+    <!-- NaCl cryptography (browser-safe, no bundler) -->
+    <script src="https://cdn.jsdelivr.net/npm/tweetnacl@1.0.3/nacl.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/tweetnacl-util@0.15.1/nacl-util.min.js"></script>
+    <!-- secp256k1 elliptic curve (ES module) -->
+    <script type="module">
+        import * as secp256k1 from "https://esm.sh/@noble/secp256k1@1.7.1";
+        window.secp256k1 = secp256k1;
+    </script>
     <script src="./main.js"></script>
 </body>
 

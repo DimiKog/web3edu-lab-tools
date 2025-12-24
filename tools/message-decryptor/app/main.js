@@ -12,6 +12,7 @@
    DOM references
 ----------------------------- */
 const decryptBtn = document.getElementById("decryptBtn");
+const privateKeyInput = document.getElementById("privateKeyInput");
 const payloadInput = document.getElementById("encryptedPayload");
 const resultBox = document.getElementById("result");
 const output = document.getElementById("decryptedOutput");
@@ -29,27 +30,57 @@ function setResultVisible(visible) {
 }
 
 /* -----------------------------
-   Core decryption logic
+   Helpers
 ----------------------------- */
-async function decryptMessage(encryptedPayload) {
-    if (!window.ethereum) {
-        throw new Error("MetaMask not detected.");
+function normalizeHex(input) {
+    const trimmed = input.trim();
+    return trimmed.startsWith("0x") ? trimmed.slice(2) : trimmed;
+}
+
+function hexToBytes(hex) {
+    if (!hex || hex.length % 2 !== 0) {
+        throw new Error("Invalid hex string.");
     }
 
-    // MetaMask expects the payload as a STRING, not an object
-    const payloadString =
-        typeof encryptedPayload === "string"
-            ? encryptedPayload
-            : JSON.stringify(encryptedPayload);
+    const bytes = new Uint8Array(hex.length / 2);
+    for (let i = 0; i < bytes.length; i += 1) {
+        bytes[i] = parseInt(hex.substr(i * 2, 2), 16);
+    }
+    return bytes;
+}
 
-    const accounts = await window.ethereum.request({
-        method: "eth_requestAccounts",
-    });
+function requireSecp256k1() {
+    const secp = window.secp256k1 || window.nobleSecp256k1;
+    if (!secp) {
+        throw new Error("secp256k1 library not loaded.");
+    }
+    return secp;
+}
 
-    return await window.ethereum.request({
-        method: "eth_decrypt",
-        params: [payloadString, accounts[0]],
-    });
+/* -----------------------------
+   Core decryption logic
+----------------------------- */
+function decryptMessage(encryptedPayload, privateKeyHex) {
+    const secp = requireSecp256k1();
+    const privateKeyBytes = hexToBytes(normalizeHex(privateKeyHex));
+    const ephemPublicKey = hexToBytes(
+        normalizeHex(encryptedPayload.ephemPublicKey)
+    );
+    const sharedSecret = secp.getSharedSecret(
+        privateKeyBytes,
+        ephemPublicKey,
+        true
+    );
+    const symmetricKey = nacl.hash(sharedSecret).slice(0, 32);
+    const nonce = nacl.util.decodeBase64(encryptedPayload.nonce);
+    const ciphertext = nacl.util.decodeBase64(encryptedPayload.ciphertext);
+    const messageBytes = nacl.secretbox.open(ciphertext, nonce, symmetricKey);
+
+    if (!messageBytes) {
+        throw new Error("Decryption failed.");
+    }
+
+    return nacl.util.encodeUTF8(messageBytes);
 }
 
 /* -----------------------------
@@ -60,6 +91,18 @@ decryptBtn.onclick = async () => {
     output.value = "";
 
     let payload;
+    let privateKey;
+
+    if (!privateKeyInput || !payloadInput) {
+        showError("Missing required inputs on the page.");
+        return;
+    }
+
+    privateKey = privateKeyInput.value.trim();
+    if (!privateKey) {
+        showError("Private key cannot be empty.");
+        return;
+    }
 
     try {
         payload = JSON.parse(payloadInput.value);
@@ -68,16 +111,18 @@ decryptBtn.onclick = async () => {
         return;
     }
 
+    if (!payload || !payload.ephemPublicKey || !payload.nonce || !payload.ciphertext) {
+        showError("Encrypted payload is missing required fields.");
+        return;
+    }
+
     try {
-        const decrypted = await decryptMessage(payload);
+        const decrypted = decryptMessage(payload, privateKey);
         output.value = decrypted;
         setResultVisible(true);
     } catch (err) {
         console.error(err);
-        showError(
-            "Decryption failed.\n\n" +
-            "Make sure you are logged into the receiver account in MetaMask."
-        );
+        showError("Decryption failed. Check the private key and payload.");
     }
 };
 

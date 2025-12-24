@@ -26,6 +26,21 @@
   margin-top: 2.5rem;
 }
 
+/* Ensure labels and inputs fill the card width */
+.w3e-card label {
+  display: block;
+  width: 100%;
+}
+
+.w3e-controls textarea {
+  padding: 0.45rem 0.6rem;
+  border-radius: 6px;
+  border: 1px solid var(--w3e-border);
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+  font-size: 0.85rem;
+  box-sizing: border-box;
+}
+
 /* Make controls stack nicely on smaller screens */
 .w3e-controls {
   align-items: flex-end;
@@ -40,4 +55,8 @@
 #encryptBtn {
   align-self: flex-end;
   margin-top: 0.5rem;
+}
+
+.hidden {
+  display: none;
 }

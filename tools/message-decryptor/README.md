@@ -1,31 +1,26 @@
 # 🔓 Message Decryptor (Web3Edu)
 
-This tool allows you to decrypt messages that were encrypted **specifically for your wallet**.
+This tool allows you to decrypt messages that were encrypted **specifically for your public key**.
 
 ## What this demonstrates
-- Wallets hold **private keys**
+- Only the matching **private key** can decrypt
 - Only the intended receiver can decrypt
 - Encryption ≠ Blockchain
 - Crypto can be fully off-chain
 
-## Important limitation (by design)
-MetaMask can only decrypt messages for accounts that exist **inside your wallet**.
-
-To simulate:
-1. Create two accounts in MetaMask
-2. Encrypt using Account A
-3. Switch to Account B
-4. Decrypt using this tool
-
----
+## How to use
+1. Generate a keypair in the Key Generator tool
+2. Encrypt a message using the public key
+3. Paste the encrypted payload and your private key here
+4. Decrypt locally in the browser
 
 ## 🇬🇷 Ελληνικά
 
 Το εργαλείο αυτό επιτρέπει την αποκρυπτογράφηση μηνυμάτων που έχουν
-κρυπτογραφηθεί **ειδικά για το πορτοφόλι σου**.
+κρυπτογραφηθεί **ειδικά για το δημόσιο κλειδί σου**.
 
 ### Τι μαθαίνεις
-- Τα πορτοφόλια κρατούν ιδιωτικά κλειδιά
+- Μόνο το αντίστοιχο **ιδιωτικό κλειδί** μπορεί να αποκρυπτογραφήσει
 - Μόνο ο σωστός παραλήπτης μπορεί να διαβάσει το μήνυμα
 - Η κρυπτογραφία δεν απαιτεί blockchain
 
@@ -37,13 +32,8 @@ To simulate:
 
 ---
 
-### Σημαντικός περιορισμός (εξ’ ορισμού)
-
-Το MetaMask μπορεί να αποκρυπτογραφήσει μηνύματα μόνο για λογαριασμούς
-που υπάρχουν **μέσα στο δικό σου πορτοφόλι**.
-
-Για προσομοίωση:
-1. Δημιούργησε δύο λογαριασμούς στο MetaMask
-2. Κρυπτογράφησε το μήνυμα χρησιμοποιώντας τον Λογαριασμό Α
-3. Κάνε εναλλαγή στον Λογαριασμό Β
-4. Αποκρυπτογράφησε το μήνυμα με αυτό το εργαλείο
+### Πώς το χρησιμοποιείς
+1. Δημιούργησε κλειδιά στο εργαλείο Key Generator
+2. Κρυπτογράφησε μήνυμα με το δημόσιο κλειδί
+3. Επικόλλησε το payload και το ιδιωτικό κλειδί εδώ
+4. Αποκρυπτογράφησε τοπικά στον browser

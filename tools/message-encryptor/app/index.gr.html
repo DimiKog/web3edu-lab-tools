@@ -23,16 +23,34 @@
                 Αυτό το εργαλείο χρησιμοποιεί <strong>ακατέργαστη κρυπτογραφία</strong> στον browser (NaCl / libsodium).<br />
                 Δεν εμπλέκεται πορτοφόλι, blockchain ή smart contract.
             </p>
+            <div class="w3e-card w3e-card--explain w3e-section">
+                <strong>Πώς να χρησιμοποιήσεις το εργαλείο (εκπαιδευτική ροή):</strong>
+                <ol class="w3e-hint" style="margin-top: 0.75rem;">
+                    <li>Δημιούργησε ζεύγος κλειδιών με το εργαλείο <em>Key Generator</em>.</li>
+                    <li>Αντέγραψε το <strong>δημόσιο κλειδί</strong> (hex μορφή).</li>
+                    <li>Επικόλλησέ το εδώ ως δημόσιο κλειδί παραλήπτη.</li>
+                    <li>Γράψε ένα σύντομο μήνυμα και κρυπτογράφησέ το.</li>
+                    <li>Μοιράσου ολόκληρο το κρυπτογραφημένο JSON με τον παραλήπτη.</li>
+                </ol>
+            </div>
             <div class="w3e-controls">
                 <label>
-                    Δημόσιο Κλειδί Παραλήπτη (Base64)
-                    <input id="receiverAddress" type="text" placeholder="0x…" />
+                    Δημόσιο Κλειδί Παραλήπτη (Hex)
+                    <input id="receiverAddress" type="text" placeholder="0x04…" />
                 </label>
+                <p class="w3e-hint">
+                    Αυτό πρέπει να είναι <strong>ακατέργαστο δημόσιο κλειδί</strong> από το εργαλείο Key Generator
+                    (όχι διεύθυνση πορτοφολιού).
+                </p>
 
                 <label>
                     Μήνυμα
                     <textarea id="plainMessage" rows="4"></textarea>
                 </label>
+                <p class="w3e-hint">
+                    Το μήνυμα κρυπτογραφείται τοπικά στον browser.
+                    Δεν αποστέλλεται σε κανέναν server.
+                </p>
 
                 <button id="encryptBtn" class="w3e-button">
                     Κρυπτογράφηση Μηνύματος
@@ -40,8 +58,12 @@
             </div>
         </section>
 
-        <section id="result" class="card hidden">
+        <section id="result" class="w3e-card w3e-section hidden">
             <h3>Κρυπτογραφημένο Περιεχόμενο</h3>
+            <p class="w3e-hint">
+                Αυτό το κρυπτογραφημένο payload περιέχει όλα τα απαραίτητα στοιχεία για την αποκρυπτογράφηση
+                (nonce, ephemeral key, ciphertext).
+            </p>
             <textarea id="encryptedOutput" rows="6" readonly></textarea>
 
             <!-- 👇 NEW subtle hint -->
@@ -61,6 +83,11 @@
     <!-- NaCl cryptography (browser-safe, no bundler) -->
     <script src="https://cdn.jsdelivr.net/npm/tweetnacl@1.0.3/nacl.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/tweetnacl-util@0.15.1/nacl-util.min.js"></script>
+    <!-- secp256k1 elliptic curve (ES module) -->
+    <script type="module">
+        import * as secp256k1 from "https://esm.sh/@noble/secp256k1@1.7.1";
+        window.secp256k1 = secp256k1;
+    </script>
     <!-- Message Encryptor logic (classic script) -->
     <script src="./main.js"></script>
 </body>

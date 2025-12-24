@@ -16,45 +16,81 @@
         <header class="w3e-hero">
             <h1 class="w3e-title">🔓 Message Decryptor</h1>
             <p class="w3e-subtitle">
-                Decrypt a message that was encrypted specifically for your wallet.
+                Decrypt a message using the private key that matches the receiver’s public key.
             </p>
         </header>
 
-        <section class="w3e-card w3e-section">
-            <label>
-                Encrypted Payload (JSON)
-                <textarea id="encryptedPayload" rows="8"
-                    placeholder='Paste the full encrypted JSON payload here'></textarea>
-            </label>
+        <section class="w3e-card w3e-card--explain w3e-section">
+            <p><strong>Learning goal:</strong> This tool shows how <em>private keys</em> are required to read encrypted
+                messages.</p>
 
-            <button id="decryptBtn" class="w3e-button">
-                Decrypt with My Wallet
-            </button>
-
-            <p class="w3e-hint">
-                Uses wallet-based private-key decryption. No blockchain interaction.
+            <p>
+                In Lab 02, messages are encrypted using a <strong>public key</strong>.
+                Only the matching <strong>private key</strong> can decrypt them.
             </p>
 
             <p class="w3e-hint">
-                ⚠️ <strong>Important:</strong><br />
-                You must be logged into the wallet account that was the original receiver.
+                🔐 This step completes the encryption → decryption cycle.
+                If the private key does not match the public key used during encryption,
+                decryption will fail — by design.
             </p>
         </section>
 
-        <section id="result" class="card hidden">
+        <section class="w3e-card w3e-section">
+            <div class="w3e-controls w3e-controls--stack">
+                <label>
+                    Private Key (Hex) — KEEP SECRET
+                    <textarea id="privateKeyInput" rows="2" placeholder="0x…"></textarea>
+                </label>
+                <p class="w3e-hint">
+                    ⚠️ You must use the <strong>private key</strong> that corresponds to the
+                    <em>public key used during encryption</em>.
+                    Anyone with this private key can read the message.
+                </p>
+
+                <label>
+                    Encrypted Payload (JSON)
+                    <textarea id="encryptedPayload" rows="8"
+                        placeholder='Paste the full encrypted JSON payload here'></textarea>
+                </label>
+                <p class="w3e-hint">
+                    Paste the <strong>entire JSON payload</strong> produced by the Message Encryptor.
+                    All fields are required for decryption.
+                </p>
+
+                <button id="decryptBtn" class="w3e-button">
+                    Decrypt Message
+                </button>
+            </div>
+
+            <p class="w3e-hint">
+                Uses local cryptography only.
+                No blockchain, no wallet, no network interaction.
+            </p>
+        </section>
+
+        <section id="result" class="w3e-card w3e-section hidden">
             <h3>Decrypted Message</h3>
             <textarea id="decryptedOutput" rows="4" readonly></textarea>
 
             <button id="copyBtn">Copy</button>
 
             <div class="info">
-                Decryption happens locally inside your wallet.
+                Decryption happens locally in your browser.
                 No data was sent to the blockchain.
             </div>
         </section>
 
     </main>
 
+    <!-- NaCl cryptography (browser-safe, no bundler) -->
+    <script src="https://cdn.jsdelivr.net/npm/tweetnacl@1.0.3/nacl.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/tweetnacl-util@0.15.1/nacl-util.min.js"></script>
+    <!-- secp256k1 elliptic curve (ES module) -->
+    <script type="module">
+        import * as secp256k1 from "https://esm.sh/@noble/secp256k1@1.7.1";
+        window.secp256k1 = secp256k1;
+    </script>
     <script src="./main.js"></script>
 </body>
 

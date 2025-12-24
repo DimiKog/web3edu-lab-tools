@@ -27,6 +27,7 @@ const privateKeyOutput = document.getElementById("privateKeyOutput");
 const publicKeyOutput = document.getElementById("publicKeyOutput");
 const addressOutput = document.getElementById("addressOutput");
 const copyBtn = document.getElementById("copyBtn");
+const copyPrivateBtn = document.getElementById("copyPrivateBtn");
 const copyPublicBtn = document.getElementById("copyPublicBtn");
 const qrBtn = document.getElementById("qrBtn");
 const qrContainer = document.getElementById("qrContainer");
@@ -241,6 +242,21 @@ copyBtn.onclick = async () => {
     try {
         await copyText(text);
         flashButtonText(copyBtn, "Copied ✓");
+    } catch {
+        alert("Copy failed.");
+    }
+};
+
+copyPrivateBtn.onclick = async () => {
+    const privateKey = privateKeyOutput.value.trim();
+    if (!privateKey) {
+        alert("Generate keys first.");
+        return;
+    }
+
+    try {
+        await copyText(privateKey);
+        flashButtonText(copyPrivateBtn, "Copied ✓");
     } catch {
         alert("Copy failed.");
     }

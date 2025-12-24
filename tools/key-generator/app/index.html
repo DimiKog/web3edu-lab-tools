@@ -81,7 +81,12 @@
 
             <label>
                 Private Key
-                <textarea id="privateKeyOutput" rows="2" readonly></textarea>
+                <div class="copy-inline-group">
+                    <textarea id="privateKeyOutput" rows="2" readonly></textarea>
+                    <button id="copyPrivateBtn" class="w3e-button secondary small" type="button">
+                        Copy
+                    </button>
+                </div>
             </label>
             <p class="w3e-hint">
                 ⚠️ Never share this. Whoever has the private key controls the identity.

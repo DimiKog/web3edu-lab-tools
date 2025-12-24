@@ -1,12 +1,22 @@
 /* Minimal overrides – inherits Web3Edu theme */
 
-textarea {
-    width: 100%;
-    font-family: monospace;
+.w3e-controls {
+    flex-direction: column;
+    align-items: stretch;
 }
 
-button {
-    margin-top: 1rem;
+.w3e-controls label {
+    width: 100%;
+}
+
+.w3e-controls textarea {
+    width: 100%;
+    padding: 0.45rem 0.6rem;
+    border-radius: 6px;
+    border: 1px solid var(--w3e-border);
+    font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+    font-size: 0.85rem;
+    box-sizing: border-box;
 }
 
 .hidden {
