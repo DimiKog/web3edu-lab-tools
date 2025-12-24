@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="el">
+
+<head>
+    <meta charset="UTF-8" />
+    <title>Γεννήτρια Κλειδιών | Web3Edu</title>
+
+    <!-- Shared Web3Edu theme -->
+    <link rel="stylesheet" href="../../shared/web3edu-theme.css" />
+    <!-- Tool-specific tweaks -->
+    <link rel="stylesheet" href="./style.css" />
+
+    <!-- Avoid favicon noise in local dev -->
+    <link rel="icon" href="data:,">
+</head>
+
+<body>
+    <main class="w3e-container">
+
+        <!-- =====================
+             Hero
+        ====================== -->
+        <header class="w3e-hero">
+            <h1 class="w3e-title">🔑 Γεννήτρια Κλειδιών</h1>
+            <p class="w3e-subtitle">
+                Δημιούργησε κρυπτογραφικά κλειδιά ντετερμινιστικά από κείμενο.
+                <br />
+                Χωρίς πορτοφόλια. Χωρίς blockchain. Καθαρή κρυπτογραφία.
+            </p>
+        </header>
+
+        <!-- =====================
+             Explanation
+        ====================== -->
+        <section class="w3e-card w3e-card--explain w3e-section">
+            <p>
+                Στο Web3, <strong>η ταυτότητα ξεκινά από τα κρυπτογραφικά κλειδιά</strong>,
+                όχι από ονόματα χρήστη ή λογαριασμούς.
+            </p>
+
+            <p>
+                Αυτό το εργαλείο δείχνει πώς ένα απλό κομμάτι κειμένου μπορεί να μετατραπεί σε:
+            </p>
+
+            <ul>
+                <li>ένα <strong>ιδιωτικό κλειδί</strong></li>
+                <li>ένα αντίστοιχο <strong>δημόσιο κλειδί</strong></li>
+                <li>μια <strong>διεύθυνση τύπου Ethereum</strong></li>
+            </ul>
+
+            <p class="w3e-hint">
+                Αυτό αντικατοπτρίζει το πώς τα πορτοφόλια παράγουν ταυτότητες — εδώ όμως βλέπεις τη διαδικασία άμεσα.
+            </p>
+        </section>
+
+        <!-- =====================
+             Controls
+        ====================== -->
+        <section class="w3e-card w3e-section">
+            <div class="w3e-controls">
+                <label>
+                    Κείμενο Εισόδου
+                    <textarea id="seedInput" rows="2" class="w3e-input-wide"
+                        placeholder="π.χ. alice@example.com ή οποιοδήποτε κείμενο"></textarea>
+                </label>
+
+            </div>
+
+            <p class="w3e-hint">
+                Η ίδια είσοδος θα παράγει πάντα τα ίδια κλειδιά.
+            </p>
+            <p class="w3e-hint">
+                Γι' αυτό τα ιδιωτικά κλειδιά πρέπει να παραμένουν μυστικά — όποιος έχει την ίδια είσοδο αποκτά την ίδια ταυτότητα.
+            </p>
+        </section>
+
+        <!-- =====================
+             Result
+        ====================== -->
+        <section id="result" class="w3e-card w3e-section hidden">
+            <h3>Δημιουργημένη Ταυτότητα</h3>
+
+            <label>
+                Ιδιωτικό Κλειδί
+                <textarea id="privateKeyOutput" rows="2" readonly></textarea>
+            </label>
+            <p class="w3e-hint">
+                ⚠️ Μην το μοιράζεσαι. Όποιος έχει το ιδιωτικό κλειδί ελέγχει την ταυτότητα.
+            </p>
+
+            <label>
+                Δημόσιο Κλειδί
+                <div class="copy-inline-group">
+                    <textarea id="publicKeyOutput" rows="3" readonly></textarea>
+                    <button id="copyPublicBtn" class="w3e-button secondary small" type="button">
+                        Αντιγραφή
+                    </button>
+                </div>
+            </label>
+            <p class="w3e-hint">
+                Χρησιμοποιείται εσωτερικά για επαλήθευση υπογραφών και για την παραγωγή της διεύθυνσης.
+            </p>
+
+            <div class="address-row">
+                <label class="address-label">
+                    Διεύθυνση Ethereum
+                    <textarea id="addressOutput" rows="1" readonly></textarea>
+                </label>
+                <div id="addressIdenticon" class="address-identicon" aria-hidden="true"></div>
+            </div>
+            <p class="w3e-hint">
+                Είναι η σύντομη, φιλική προς τον χρήστη αναπαράσταση του δημόσιου κλειδιού.
+            </p>
+
+            <button id="qrBtn" class="w3e-button secondary" type="button">
+                Δημιουργία QR Code
+            </button>
+            <p class="w3e-hint">
+                Χρήσιμο για μοίρασμα διευθύνσεων από κοντά ή σε κινητό.
+            </p>
+
+            <div id="qrContainer" class="qr-code-container hidden"></div>
+
+            <p class="w3e-hint" style="margin-top: 0.75rem;">
+                Μοιράσου το <strong>δημόσιο κλειδί ή τη διεύθυνση</strong> με άλλους.
+                Ποτέ μην μοιράζεσαι το ιδιωτικό κλειδί.
+            </p>
+
+            <button id="copyBtn" class="w3e-button secondary">
+                Αντιγραφή Όλων
+            </button>
+        </section>
+
+        <!-- =====================
+             Takeaway
+        ====================== -->
+        <section class="w3e-takeaway w3e-section">
+            <p>
+                💡 <strong>Βασικό συμπέρασμα:</strong><br />
+                Τα πορτοφόλια δεν δημιουργούν ταυτότητα — διαχειρίζονται τα κλειδιά για εσένα.
+            </p>
+        </section>
+
+    </main>
+
+    <!-- =====================
+         Cryptography libraries
+         (browser-safe, no bundler)
+    ====================== -->
+
+    <!-- secp256k1 elliptic curve (public key derivation, ES module) -->
+    <script type="module">
+        import * as secp256k1 from "https://esm.sh/@noble/secp256k1@1.7.1";
+
+        window.secp256k1 = secp256k1;
+    </script>
+
+    <!-- keccak256 hash (Ethereum-standard, browser-safe) -->
+    <script src="https://cdn.jsdelivr.net/npm/js-sha3@0.9.2/build/sha3.min.js"></script>
+
+    <!-- QR code generator -->
+    <script src="https://cdn.jsdelivr.net/npm/qrcodejs@1.0.0/qrcode.min.js"></script>
+
+    <!-- Ethereum blockies (identicon) -->
+    <script src="https://cdn.jsdelivr.net/npm/ethereum-blockies@0.1.1/blockies.min.js"></script>
+
+    <script>
+        if (typeof window.keccak256 !== "function") {
+            console.error("keccak256 not loaded");
+        } else {
+            console.log("keccak256 loaded");
+        }
+    </script>
+
+    <!-- Logic -->
+    <script src="./main.js"></script>
+</body>
+
+</html>

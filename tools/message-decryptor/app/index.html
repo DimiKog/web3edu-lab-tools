@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <title>Message Decryptor | Web3Edu</title>
+
+    <link rel="stylesheet" href="../../shared/web3edu-theme.css" />
+    <link rel="stylesheet" href="./style.css" />
+    <link rel="icon" href="data:,">
+</head>
+
+<body>
+    <main class="w3e-container">
+
+        <header class="w3e-hero">
+            <h1 class="w3e-title">🔓 Message Decryptor</h1>
+            <p class="w3e-subtitle">
+                Decrypt a message that was encrypted specifically for your wallet.
+            </p>
+        </header>
+
+        <section class="w3e-card w3e-section">
+            <label>
+                Encrypted Payload (JSON)
+                <textarea id="encryptedPayload" rows="8"
+                    placeholder='Paste the full encrypted JSON payload here'></textarea>
+            </label>
+
+            <button id="decryptBtn" class="w3e-button">
+                Decrypt with My Wallet
+            </button>
+
+            <p class="w3e-hint">
+                Uses wallet-based private-key decryption. No blockchain interaction.
+            </p>
+
+            <p class="w3e-hint">
+                ⚠️ <strong>Important:</strong><br />
+                You must be logged into the wallet account that was the original receiver.
+            </p>
+        </section>
+
+        <section id="result" class="card hidden">
+            <h3>Decrypted Message</h3>
+            <textarea id="decryptedOutput" rows="4" readonly></textarea>
+
+            <button id="copyBtn">Copy</button>
+
+            <div class="info">
+                Decryption happens locally inside your wallet.
+                No data was sent to the blockchain.
+            </div>
+        </section>
+
+    </main>
+
+    <script src="./main.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,14 @@
+/* Minimal overrides – inherits Web3Edu theme */
+
+textarea {
+    width: 100%;
+    font-family: monospace;
+}
+
+button {
+    margin-top: 1rem;
+}
+
+.hidden {
+    display: none;
+}

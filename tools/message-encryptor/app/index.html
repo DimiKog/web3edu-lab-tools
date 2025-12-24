@@ -14,14 +14,18 @@
         <header class="w3e-hero">
             <h1 class="w3e-title">🔐 Message Encryptor</h1>
             <p class="w3e-subtitle">
-                Encrypt a message so only the receiver’s wallet can read it.
+                Encrypt a message using raw public‑key cryptography (NaCl).
             </p>
         </header>
 
         <section class="w3e-card w3e-section">
+            <p class="w3e-hint">
+                This tool uses <strong>raw cryptography</strong> in the browser (NaCl / libsodium style).<br />
+                No wallet, blockchain, or smart contract is involved.
+            </p>
             <div class="w3e-controls">
                 <label>
-                    Receiver Address
+                    Receiver Public Key (Base64)
                     <input id="receiverAddress" type="text" placeholder="0x…" />
                 </label>
 
@@ -31,19 +35,9 @@
                 </label>
 
                 <button id="encryptBtn" class="w3e-button">
-                    Encrypt for Receiver
+                    Encrypt Message
                 </button>
             </div>
-
-            <p class="w3e-hint">
-                Uses wallet-based public-key encryption. No blockchain interaction.
-            </p>
-
-            <p class="w3e-hint">
-                ⚠️ <strong>Important limitation (by design):</strong><br />
-                MetaMask can only encrypt messages for accounts that exist inside <em>your own wallet</em>.<br />
-                To simulate a receiver, create or switch to another account in MetaMask.
-            </p>
         </section>
 
         <section id="result" class="card hidden">
@@ -58,8 +52,8 @@
             <button id="copyBtn">Copy</button>
 
             <div class="info">
-                This payload can only be decrypted by the receiver’s wallet.
-                No blockchain interaction occurred.
+                This encrypted payload can be decrypted only with the matching private key.
+                No blockchain or wallet interaction occurred.
             </div>
         </section>
     </main>

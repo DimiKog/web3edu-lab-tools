@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <title>Key Generator | Web3Edu</title>
+
+    <!-- Shared Web3Edu theme -->
+    <link rel="stylesheet" href="../../shared/web3edu-theme.css" />
+    <!-- Tool-specific tweaks -->
+    <link rel="stylesheet" href="./style.css" />
+
+    <!-- Avoid favicon noise in local dev -->
+    <link rel="icon" href="data:,">
+</head>
+
+<body>
+    <main class="w3e-container">
+
+        <!-- =====================
+             Hero
+        ====================== -->
+        <header class="w3e-hero">
+            <h1 class="w3e-title">🔑 Key Generator</h1>
+            <p class="w3e-subtitle">
+                Generate cryptographic keys deterministically from text.
+                <br />
+                No wallets. No blockchain. Pure cryptography.
+            </p>
+        </header>
+
+        <!-- =====================
+             Explanation
+        ====================== -->
+        <section class="w3e-card w3e-card--explain w3e-section">
+            <p>
+                In Web3, <strong>identity starts with cryptographic keys</strong>,
+                not usernames or accounts.
+            </p>
+
+            <p>
+                This tool demonstrates how a simple piece of text can be transformed into:
+            </p>
+
+            <ul>
+                <li>a <strong>private key</strong></li>
+                <li>a corresponding <strong>public key</strong></li>
+                <li>an <strong>Ethereum-style address</strong></li>
+            </ul>
+            <p class="w3e-hint">
+                This mirrors how wallets derive identities — but here you see the process directly.
+            </p>
+        </section>
+
+        <!-- =====================
+             Controls
+        ====================== -->
+        <section class="w3e-card w3e-section">
+            <div class="w3e-controls">
+                <label>
+                    Input Text
+                    <textarea id="seedInput" rows="2" class="w3e-input-wide"
+                        placeholder="e.g. alice@example.com or any text"></textarea>
+                </label>
+
+            </div>
+
+            <p class="w3e-hint">
+                The same input will always produce the same keys.
+            </p>
+            <p class="w3e-hint">
+                This is why private keys must stay secret — anyone with the same input gets the same identity.
+            </p>
+        </section>
+
+        <!-- =====================
+             Result
+        ====================== -->
+        <section id="result" class="w3e-card w3e-section hidden">
+            <h3>Generated Identity</h3>
+
+            <label>
+                Private Key
+                <textarea id="privateKeyOutput" rows="2" readonly></textarea>
+            </label>
+            <p class="w3e-hint">
+                ⚠️ Never share this. Whoever has the private key controls the identity.
+            </p>
+
+            <label>
+                Public Key
+                <div class="copy-inline-group">
+                    <textarea id="publicKeyOutput" rows="3" readonly></textarea>
+                    <button id="copyPublicBtn" class="w3e-button secondary small" type="button">
+                        Copy
+                    </button>
+                </div>
+            </label>
+            <p class="w3e-hint">
+                Used internally to verify signatures and derive the address.
+            </p>
+
+            <div class="address-row">
+                <label class="address-label">
+                    Ethereum Address
+                    <textarea id="addressOutput" rows="1" readonly></textarea>
+                </label>
+                <div id="addressIdenticon" class="address-identicon" aria-hidden="true"></div>
+            </div>
+            <p class="w3e-hint">
+                This is a shortened, user-facing representation of the public key.
+            </p>
+
+            <button id="qrBtn" class="w3e-button secondary" type="button">
+                Create QR Code
+            </button>
+            <p class="w3e-hint">
+                Useful for sharing addresses in person or on mobile.
+            </p>
+
+            <div id="qrContainer" class="qr-code-container hidden"></div>
+
+            <p class="w3e-hint" style="margin-top: 0.75rem;">
+                Share the <strong>public key or address</strong> with others.
+                Never share the private key.
+            </p>
+
+            <button id="copyBtn" class="w3e-button secondary">
+                Copy All
+            </button>
+        </section>
+
+        <!-- =====================
+             Takeaway
+        ====================== -->
+        <section class="w3e-takeaway w3e-section">
+            <p>
+                💡 <strong>Key takeaway:</strong><br />
+                Wallets do not create identity — they manage keys for you.
+            </p>
+        </section>
+
+    </main>
+
+    <!-- =====================
+         Cryptography libraries
+         (browser-safe, no bundler)
+    ====================== -->
+
+    <!-- keccak256 hash (Ethereum-standard, browser-safe) -->
+    <script src="https://cdn.jsdelivr.net/npm/js-sha3@0.9.2/build/sha3.min.js"></script>
+
+    <!-- QR code generator -->
+    <script src="https://cdn.jsdelivr.net/npm/qrcodejs@1.0.0/qrcode.min.js"></script>
+
+    <!-- Ethereum blockies (identicon) -->
+    <script src="https://cdn.jsdelivr.net/npm/ethereum-blockies@0.1.1/blockies.min.js"></script>
+
+    <!-- secp256k1 elliptic curve (ES module) -->
+    <script type="module">
+        import * as secp256k1 from "https://esm.sh/@noble/secp256k1@1.7.1";
+
+        window.secp256k1 = secp256k1;
+
+        if (typeof window.secp256k1 !== "object") {
+            console.error("secp256k1 not loaded");
+        } else {
+            console.log("secp256k1 loaded");
+        }
+    </script>
+
+    <script>
+        if (typeof window.keccak256 !== "function") {
+            console.error("keccak256 not loaded");
+        } else {
+            console.log("keccak256 loaded");
+        }
+
+        // secp256k1 is loaded via the module script above
+    </script>
+
+    <!-- Logic -->
+    <script src="./main.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,159 @@
+/* =========================================
+   Web3Edu — Key Generator (Tool Overrides)
+   Extends web3edu-theme.css
+   ========================================= */
+
+/* --- Input area spacing --- */
+.w3e-controls {
+  flex-direction: column;
+  align-items: stretch;
+}
+
+/* --- Textarea for seed / input text --- */
+#seedInput {
+  min-height: 90px;
+  resize: vertical;
+}
+
+/* --- Output blocks (keys, hashes, address) --- */
+.w3e-output {
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+  font-size: 0.85rem;
+  background: #f8fafc;
+  border: 1px dashed var(--w3e-border);
+  padding: 0.75rem 0.9rem;
+  border-radius: 8px;
+  word-break: break-all;
+  margin-bottom: 0.5rem;
+}
+
+/* --- Copy buttons next to outputs --- */
+.w3e-copy-btn {
+  font-size: 0.8rem;
+  padding: 0.35rem 0.7rem;
+  margin-bottom: 1rem;
+}
+
+/* --- Section titles inside tool --- */
+.w3e-key-title {
+  font-size: 0.95rem;
+  font-weight: 600;
+  margin-bottom: 0.3rem;
+}
+
+/* --- Warning block (important teaching moment) --- */
+.w3e-warning {
+  background: linear-gradient(
+    180deg,
+    #fff7ed 0%,
+    #fffbeb 100%
+  );
+  border-left: 4px solid var(--w3e-warning);
+  padding: 1rem 1.2rem;
+  border-radius: 10px;
+  font-size: 0.85rem;
+  color: #92400e;
+  margin-top: 1.5rem;
+}
+
+/* --- Success hint (after generation) --- */
+.w3e-success {
+  color: var(--w3e-success);
+  font-size: 0.85rem;
+  margin-top: 0.5rem;
+}
+
+/* --- Small helper text --- */
+.w3e-helper {
+  font-size: 0.8rem;
+  color: var(--w3e-muted);
+  margin-top: 0.25rem;
+}
+
+/* --- Mobile adjustments --- */
+@media (max-width: 640px) {
+  .w3e-container {
+    padding: 1.5rem;
+  }
+}
+
+.w3e-input-wide {
+    width: 100%;
+    font-size: 1rem;
+    box-sizing: border-box;
+}
+
+.copy-inline-group {
+    display: flex;
+    gap: 0.5rem;
+    align-items: center;
+}
+
+.w3e-button.small {
+    padding: 0.3rem 0.6rem;
+    font-size: 0.8rem;
+}
+
+.qr-code-container {
+    margin-top: 1rem;
+    display: flex;
+    justify-content: center;
+}
+
+.address-row {
+    display: flex;
+    gap: 0.75rem;
+    align-items: flex-start;
+}
+
+.address-label {
+    flex: 1;
+}
+
+.address-identicon {
+    width: 48px;
+    height: 48px;
+    border: 1px solid var(--w3e-border);
+    border-radius: 8px;
+    padding: 4px;
+    background: #ffffff;
+}
+
+.address-identicon canvas {
+    display: block;
+    width: 40px;
+    height: 40px;
+}
+
+@media (max-width: 640px) {
+    .address-row {
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    .address-identicon {
+        align-self: flex-start;
+    }
+}
+
+
+/* --- Fix textarea overlap & layout issues --- */
+.w3e-card textarea {
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.w3e-card label {
+  display: block;
+  width: 100%;
+}
+
+.copy-inline-group {
+  display: flex;
+  gap: 0.5rem;
+  align-items: center;
+}
+
+.copy-inline-group textarea {
+  flex: 1;
+}

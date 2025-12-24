@@ -73,7 +73,7 @@ The receiver’s wallet uses this entire payload to decrypt the message.
 
 ## Related labs
 
-- Lab 02 — Encrypted Messages & Privacy
+- Lab 02 — Encrypted Messages & Ownership
 
 ---
 
@@ -133,3 +133,8 @@ The receiver’s wallet uses this entire payload to decrypt the message.
 - `ciphertext`
 
 ➡️ **Πρέπει να μοιραστείτε ολόκληρο το JSON με τον παραλήπτη**, ώστε να μπορέσει να αποκρυπτογραφήσει το μήνυμα.
+
+
+## Σχετικό Εργαστήριο
+
+- Lab 02 — Κρυπτογραφημένα Μηνύματα & Ιδιοκτησία

@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="el">
+
+<head>
+    <meta charset="UTF-8" />
+    <title>Αποκρυπτογράφηση Μηνύματος | Web3Edu</title>
+
+    <link rel="stylesheet" href="../../shared/web3edu-theme.css" />
+    <link rel="stylesheet" href="./style.css" />
+    <link rel="icon" href="data:,">
+</head>
+
+<body>
+    <main class="w3e-container">
+
+        <header class="w3e-hero">
+            <h1 class="w3e-title">🔓 Αποκρυπτογράφηση Μηνύματος</h1>
+            <p class="w3e-subtitle">
+                Αποκρυπτογράφησε ένα μήνυμα που έχει κρυπτογραφηθεί για το πορτοφόλι σου.
+            </p>
+        </header>
+
+        <section class="w3e-card w3e-section">
+            <label>
+                Κρυπτογραφημένο Payload (JSON)
+                <textarea id="encryptedPayload" rows="8"
+                    placeholder="Επικόλλησε εδώ ολόκληρο το JSON payload"></textarea>
+            </label>
+
+            <button id="decryptBtn" class="w3e-button">
+                Αποκρυπτογράφηση με το Πορτοφόλι μου
+            </button>
+
+            <p class="w3e-hint">
+                Χρήση αποκρυπτογράφησης με ιδιωτικό κλειδί πορτοφολιού. Χωρίς blockchain.
+            </p>
+
+            <p class="w3e-hint">
+                ⚠️ <strong>Σημαντικό:</strong><br />
+                Πρέπει να είσαι συνδεδεμένος στο πορτοφόλι που ήταν ο αρχικός παραλήπτης.
+            </p>
+        </section>
+
+        <section id="result" class="card hidden">
+            <h3>Αποκρυπτογραφημένο Μήνυμα</h3>
+            <textarea id="decryptedOutput" rows="4" readonly></textarea>
+
+            <button id="copyBtn">Αντιγραφή</button>
+
+            <div class="info">
+                Η αποκρυπτογράφηση γίνεται τοπικά στο πορτοφόλι.
+                Δεν γίνεται καμία συναλλαγή στο blockchain.
+            </div>
+        </section>
+
+    </main>
+
+    <script src="./main.js"></script>
+</body>
+
+</html>

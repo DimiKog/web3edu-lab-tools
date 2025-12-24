@@ -14,14 +14,18 @@
         <header class="w3e-hero">
             <h1 class="w3e-title">🔐 Κρυπτογράφηση Μηνύματος</h1>
             <p class="w3e-subtitle">
-                Κρυπτογραφήστε ένα μήνυμα ώστε μόνο το πορτοφόλι του παραλήπτη να μπορεί να το διαβάσει.
+                Κρυπτογραφήστε ένα μήνυμα χρησιμοποιώντας κρυπτογραφία δημόσιου κλειδιού (NaCl).
             </p>
         </header>
 
         <section class="w3e-card w3e-section">
+            <p class="w3e-hint">
+                Αυτό το εργαλείο χρησιμοποιεί <strong>ακατέργαστη κρυπτογραφία</strong> στον browser (NaCl / libsodium).<br />
+                Δεν εμπλέκεται πορτοφόλι, blockchain ή smart contract.
+            </p>
             <div class="w3e-controls">
                 <label>
-                    Διεύθυνση Παραλήπτη
+                    Δημόσιο Κλειδί Παραλήπτη (Base64)
                     <input id="receiverAddress" type="text" placeholder="0x…" />
                 </label>
 
@@ -31,28 +35,16 @@
                 </label>
 
                 <button id="encryptBtn" class="w3e-button">
-                    Κρυπτογράφηση για τον Παραλήπτη
+                    Κρυπτογράφηση Μηνύματος
                 </button>
             </div>
-
-            <p class="w3e-hint">
-                Χρησιμοποιεί κρυπτογράφηση δημόσιου κλειδιού μέσω πορτοφολιού. Δεν υπάρχει καμία αλληλεπίδραση με το
-                blockchain.
-            </p>
-
-            <p class="w3e-hint">
-                ⚠️ <strong>Σημαντικός περιορισμός (εξ ορισμού):</strong><br />
-                Το MetaMask μπορεί να κρυπτογραφεί μηνύματα μόνο για λογαριασμούς που υπάρχουν <em>στο δικό σας
-                    πορτοφόλι</em>.<br />
-                Για να προσομοιώσετε παραλήπτη, δημιουργήστε ή αλλάξτε σε άλλον λογαριασμό στο MetaMask.
-            </p>
         </section>
 
         <section id="result" class="card hidden">
             <h3>Κρυπτογραφημένο Περιεχόμενο</h3>
             <textarea id="encryptedOutput" rows="6" readonly></textarea>
 
-            <!-- 👇 Διακριτική υπόδειξη -->
+            <!-- 👇 NEW subtle hint -->
             <p class="w3e-hint" style="margin-top: 0.5rem;">
                 Μοιραστείτε ολόκληρο το JSON με τον παραλήπτη.
             </p>
@@ -60,16 +52,16 @@
             <button id="copyBtn">Αντιγραφή</button>
 
             <div class="info">
-                Αυτό το περιεχόμενο μπορεί να αποκρυπτογραφηθεί μόνο από το πορτοφόλι του παραλήπτη.
-                Δεν πραγματοποιήθηκε καμία αλληλεπίδραση με το blockchain.
+                Αυτό το κρυπτογραφημένο περιεχόμενο μπορεί να αποκρυπτογραφηθεί μόνο με το αντίστοιχο ιδιωτικό κλειδί.
+                Δεν υπήρξε αλληλεπίδραση με blockchain ή πορτοφόλι.
             </div>
         </section>
     </main>
 
-    <!-- NaCl κρυπτογραφία (ασφαλής για browser, χωρίς bundler) -->
+    <!-- NaCl cryptography (browser-safe, no bundler) -->
     <script src="https://cdn.jsdelivr.net/npm/tweetnacl@1.0.3/nacl.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/tweetnacl-util@0.15.1/nacl-util.min.js"></script>
-    <!-- Λογική εργαλείου Κρυπτογράφησης -->
+    <!-- Message Encryptor logic (classic script) -->
     <script src="./main.js"></script>
 </body>
 
