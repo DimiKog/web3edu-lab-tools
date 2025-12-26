@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="el">
+
+<head>
+    <meta charset="UTF-8" />
+    <title>Υπογραφή Μηνύματος — Web3Edu</title>
+
+    <!-- Web3Edu shared theme -->
+    <link rel="stylesheet" href="../../shared/web3edu-theme.css" />
+    <link rel="stylesheet" href="style.css" />
+
+    <!-- Crypto libs (same stack as Lab 02) -->
+    <script src="vendor/sha3.min.js"></script>
+    <script>
+        // js-sha3 exposes either keccak256 or sha3_256 depending on build
+        if (!window.keccak256 && window.sha3_256) {
+            window.keccak256 = window.sha3_256;
+        }
+    </script>
+    <script type="module">
+        import * as secp256k1 from "./vendor/secp256k1.bundle.mjs";
+        import { sha256 } from "./vendor/sha256.bundle.mjs";
+        import { hmac } from "./vendor/hmac.bundle.mjs";
+
+        // Provide sync hash/HMAC to avoid WebCrypto requirements.
+        secp256k1.utils.sha256Sync = (msg) => sha256(msg);
+        secp256k1.utils.hmacSha256Sync = (key, ...msgs) =>
+            hmac(sha256, key, secp256k1.utils.concatBytes(...msgs));
+
+        window.nobleSecp256k1 = secp256k1;
+    </script>
+</head>
+
+<body>
+    <main class="w3e-container">
+
+        <h1 class="w3e-title">✍️ Υπογραφή Μηνύματος</h1>
+        <p class="w3e-subtitle">
+            Υπογράψτε ένα μήνυμα χρησιμοποιώντας ιδιωτικό κλειδί για να αποδείξετε την ιδιοκτησία και την πρόθεση.
+        </p>
+
+        <!-- Explanation -->
+        <section class="w3e-card w3e-card--explain">
+            <p>
+                Αυτό το εργαλείο δείχνει την <strong>ακατέργαστη κρυπτογραφική υπογραφή</strong>.
+            </p>
+            <ul>
+                <li>Το μήνυμα παραμένει αναγνώσιμο</li>
+                <li>Το ιδιωτικό κλειδί αποδεικνύει ποιος υπέγραψε</li>
+                <li>Οποιοσδήποτε μπορεί να επαληθεύσει την υπογραφή</li>
+            </ul>
+            <p class="w3e-hint">
+                💡 Μπορείτε να επαναχρησιμοποιήσετε ένα <strong>ιδιωτικό κλειδί που δημιουργήθηκε στο Lab 02</strong>.
+            </p>
+            <p class="w3e-hint">
+                💡 Καθώς πληκτρολογείτε το μήνυμα και το ιδιωτικό κλειδί, η υπογραφή ενημερώνεται ζωντανά. Βεβαιωθείτε ότι εισάγετε έγκυρα δεδομένα.
+            </p>
+        </section>
+
+        <!-- Input -->
+        <section class="w3e-section w3e-controls">
+
+            <label>
+                Μήνυμα προς υπογραφή
+                <textarea id="messageInput" rows="4" placeholder="Πληκτρολογήστε οποιοδήποτε μήνυμα θέλετε να υπογράψετε"></textarea>
+                <p class="w3e-hint">
+                    ✍️ Δοκιμάστε να αλλάξετε έναν χαρακτήρα και παρατηρήστε πώς αλλάζει η υπογραφή.
+                </p>
+            </label>
+
+            <label>
+                Ιδιωτικό Κλειδί (hex)
+                <input id="privateKeyInput" placeholder="0xabc123... (από το Lab 02)" />
+            </label>
+
+        </section>
+
+        <!-- Output -->
+        <section id="resultBox" class="w3e-card hidden">
+            <h3>Αποτέλεσμα Υπογραφής</h3>
+            <p class="w3e-hint">
+                🔎 Αυτές οι τιμές παράγονται <strong>off‑chain</strong>. Δεν απαιτείται καμία αλληλεπίδραση με blockchain για την υπογραφή
+                ή την επαλήθευση ενός μηνύματος.
+            </p>
+
+            <div class="w3e-section">
+                <label>Hash Μηνύματος (keccak256)</label>
+                <textarea id="hashOutput" class="mono placeholder" rows="2" readonly></textarea>
+            </div>
+
+            <div class="w3e-section">
+                <label>Υπογραφή</label>
+                <textarea id="signatureOutput" class="mono placeholder" rows="3" readonly></textarea>
+            </div>
+
+            <div class="w3e-controls w3e-controls--center">
+                <button id="copyAllBtn" class="w3e-button secondary">
+                    Αντιγραφή Όλων
+                </button>
+            </div>
+        </section>
+
+    </main>
+
+    <script src="main.js"></script>
+</body>
+
+</html>

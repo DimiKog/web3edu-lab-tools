@@ -1,0 +1,67 @@
+/* =====================================
+   Message Signer – local adjustments
+   Works ON TOP of web3edu-theme.css
+   ===================================== */
+
+/* Stack inputs vertically for clarity */
+.w3e-controls {
+  flex-direction: column;
+  align-items: stretch;
+}
+
+/* Labels above fields */
+.w3e-controls label {
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+  font-weight: 600;
+}
+
+/* Wider, readable text areas */
+.w3e-controls textarea {
+  width: 100%;
+  min-height: 120px;
+  resize: vertical;
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+  font-size: 0.85rem;
+  max-width: 100%;
+}
+
+/* Private key input should feel “serious” */
+.w3e-controls input[type="text"] {
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+  font-size: 0.85rem;
+  width: 100%;
+  max-width: 100%;
+}
+
+/* Result box spacing */
+#resultBox textarea {
+  width: 100%;
+  min-height: 70px;
+  resize: none;
+}
+
+/* Copy button alignment */
+#copyAllBtn {
+  margin-top: 1rem;
+  align-self: center;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+#copyAllBtn.copied {
+  animation: copyPulse 0.7s ease;
+  box-shadow: 0 0 0 3px rgba(62, 180, 137, 0.25);
+}
+
+@keyframes copyPulse {
+  0% {
+    transform: scale(1);
+  }
+  45% {
+    transform: scale(1.04);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
